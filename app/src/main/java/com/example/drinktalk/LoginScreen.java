@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -12,7 +13,7 @@ import android.widget.ImageView;
 public class LoginScreen extends AppCompatActivity {
 
     ImageView imgLogo;
-    ImageButton btnPrijaviSe;
+    Button btnPrijaviSe;
     EditText etLogin;
 
     @Override

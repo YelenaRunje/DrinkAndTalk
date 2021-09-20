@@ -14,26 +14,38 @@
         android:layout_height="150dp"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/et_login"
-        android:layout_marginBottom="20dp"
-        ></ImageView>
+        android:layout_marginBottom="20dp" />
 
     <EditText
+        android:layout_marginEnd="50dp"
         android:id="@+id/et_login"
         android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/tvLogin"
-        android:background="@color/white"
-        ></EditText>
+        android:padding="10dp"
+        android:background="@drawable/rounded_shape" />
 
-    <ImageButton
+
+
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_prijavi_se"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         android:layout_below="@+id/et_login"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:src="@drawable/btn_shape">
-    </ImageButton>
+        android:layout_centerHorizontal="true"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/btn_prijavi"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/black"
+        app:cornerRadius="500dp"
+        app:iconGravity="textStart"
+         />
+
 
 </RelativeLayout>
