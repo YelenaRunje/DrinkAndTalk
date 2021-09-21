@@ -13,13 +13,21 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/et_login"
+        android:layout_marginTop="100dp"
         android:layout_marginBottom="20dp" />
 
-    <EditText
+
+    <RelativeLayout
+        android:layout_below="@+id/imgLogo"
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+
+        <EditText
         android:layout_marginEnd="50dp"
         android:id="@+id/et_login"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/tvLogin"
@@ -29,7 +37,7 @@
 
 
 
-    <com.google.android.material.button.MaterialButton
+        <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_prijavi_se"
         android:layout_width="130dp"
         android:layout_height="130dp"
@@ -44,8 +52,7 @@
         android:textColor="@color/white"
         android:backgroundTint="@color/black"
         app:cornerRadius="500dp"
-        app:iconGravity="textStart"
          />
-
+    </RelativeLayout>
 
 </RelativeLayout>

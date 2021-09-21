@@ -2,4 +2,7 @@
     <string name="app_name">Drink&amp;Talk</string>
     <string name="tvLogin">Daj nadimak ili ime</string>
     <string name="btn_prijavi">PRIJAVI SE</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_kreiraj">KREIRAJ IGRU</string>
 </resources>
