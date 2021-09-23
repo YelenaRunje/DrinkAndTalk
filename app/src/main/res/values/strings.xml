@@ -5,4 +5,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="btn_kreiraj">KREIRAJ IGRU</string>
+    <string name="btn_prijavi_u_postojecu">PRIJAVI SE U POSTOJECU IGRU</string>
+    <string name="prijavljena_ekipa">PRIJAVLJENA EKIPA</string>
+
 </resources>
