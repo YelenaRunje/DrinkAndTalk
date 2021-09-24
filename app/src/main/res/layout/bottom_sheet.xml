@@ -64,7 +64,7 @@
         android:layout_weight="1"
         tools:ignore="MissingConstraints"
         android:footerDividersEnabled="true"
-        android:divider=""
+        android:divider="@drawable/footer_divider"
         android:dividerHeight="1dp"/>
 
 

@@ -24,6 +24,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.zxing.WriterException;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
 
 
-public class fragment_game extends Fragment {
+public class fragment_game extends Fragment implements BottomSheetDialogFragment {
 
     private LinearLayout layoutBottomSheet;
     private BottomSheetBehavior bottomSheetBehavior;
@@ -57,7 +58,6 @@ public class fragment_game extends Fragment {
 
         layoutBottomSheet = view.findViewById(R.id.bottomSheet);
         btnUpostojecu = view.findViewById(R.id.btn_prijavi_u_postojecu);
-
 
         spinner = view.findViewById(R.id.spinner);
         qrCode = view.findViewById(R.id.qrCode);
