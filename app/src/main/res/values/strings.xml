@@ -7,5 +7,6 @@
     <string name="btn_kreiraj">KREIRAJ IGRU</string>
     <string name="btn_prijavi_u_postojecu">PRIJAVI SE U POSTOJECU IGRU</string>
     <string name="prijavljena_ekipa">PRIJAVLJENA EKIPA</string>
+    <string name="vrijeme_igre">VRIJEME IGRE</string>
 
 </resources>

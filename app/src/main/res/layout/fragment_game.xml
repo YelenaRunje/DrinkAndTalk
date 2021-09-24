@@ -10,7 +10,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_primary"
-    android:backgroundTint="@color/color_primary"
     tools:ignore="ExtraText">
 
         <androidx.cardview.widget.CardView
@@ -44,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:text="VRIJEME IGRE"
+            android:text="@string/vrijeme_igre"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="30px" />
