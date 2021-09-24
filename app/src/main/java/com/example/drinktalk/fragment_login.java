@@ -39,14 +39,22 @@ public class fragment_login extends Fragment {
             public void onClick(View v) {
 
                 Bundle bundle = new Bundle();
-                bundle.putString("username", unos.getText().toString());
+                String username = unos.getText().toString();
 
-                fragment_hello second = new fragment_hello();
-                second.setArguments(bundle);
-                FragmentTransaction trans = getFragmentManager().beginTransaction();
-                trans.replace(R.id.placeholder, second);
-                trans.addToBackStack(null);
-                trans.commit();
+                if (!username.isEmpty()) {
+
+                    bundle.putString("username", username);
+
+                    fragment_hello second = new fragment_hello();
+                    second.setArguments(bundle);
+                    FragmentTransaction trans = getFragmentManager().beginTransaction();
+                    trans.replace(R.id.placeholder, second);
+                    trans.addToBackStack(null);
+                    trans.commit();
+                }
+                else {
+                    Toast.makeText(v.getContext(), "Username must not be empty!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

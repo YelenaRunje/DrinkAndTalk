@@ -15,8 +15,9 @@ import com.google.android.material.button.MaterialButton;
 public class fragment_hello extends Fragment implements View.OnClickListener {
 
     private TextView username;
-    private Button back,prijavaUpostojecu;
+    private Button back, scan;
     private MaterialButton kreiraj;
+
 
     public fragment_hello() {
     }
@@ -31,11 +32,11 @@ public class fragment_hello extends Fragment implements View.OnClickListener {
 
         back = view.findViewById(R.id.btn_back);
         kreiraj = view.findViewById(R.id.btn_prijavi_se);
-        prijavaUpostojecu=view.findViewById(R.id.btn_prijavi_u_postojecu);
+        scan = view.findViewById(R.id.btn_prijavi_u_postojecu);
 
         back.setOnClickListener(this);
         kreiraj.setOnClickListener(this);
-        prijavaUpostojecu.setOnClickListener(this);
+        scan.setOnClickListener(this);
 
         return view;
     }
@@ -43,27 +44,30 @@ public class fragment_hello extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         FragmentTransaction trans = getFragmentManager().beginTransaction();
+        Bundle bundle = new Bundle();
+        bundle.putString("usernameBack", username.getText().toString());
 
         switch (v.getId()) {
 
             case R.id.btn_back:
-                Bundle bundle = new Bundle();
-                bundle.putString("usernameBack", username.getText().toString());
-                fragment_login first = new fragment_login();
-                first.setArguments(bundle);
-                trans.replace(R.id.placeholder, first);
+                fragment_login login = new fragment_login();
+                login.setArguments(bundle);
+                trans.replace(R.id.placeholder, login);
                 trans.addToBackStack(null);
                 trans.commit();
                 break;
 
             case R.id.btn_prijavi_se:
-                trans.replace(R.id.placeholder, new fragment_game());
+                fragment_game game = new fragment_game();
+                game.setArguments(bundle);
+                trans.replace(R.id.placeholder, game);
                 trans.addToBackStack(null);
                 trans.commit();
                 break;
 
             case R.id.btn_prijavi_u_postojecu:
                 Intent intent = new Intent(getContext(), ScanScreen.class);
+                intent.putExtra("username", username.getText().toString());
                 startActivity(intent);
         }
     }

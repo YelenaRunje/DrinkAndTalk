@@ -53,7 +53,6 @@ public class fragment_countdown extends Fragment  {
                 tvTimer.setVisibility(View.GONE);
                 progressBar.setVisibility(View.GONE);
 
-
             }
         }
 
@@ -70,7 +69,7 @@ public class fragment_countdown extends Fragment  {
     private void setProgressBarValues() {
 
         progressBar.setMax((int) pocetak / 1000);
-        progressBar.setProgress((int) pocetak / 1000);
+        progressBar.setProgress((int) interval / 1000);
     }
 
 

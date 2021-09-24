@@ -6,14 +6,13 @@
     android:background="@color/color_primary"
     android:layout_height="match_parent">
 
-
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_back"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginLeft="45dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="75dp"
         android:backgroundTint="@color/white"
         app:icon="@drawable/baseline_navigate_before_black_18"
         app:iconPadding="0dp"
@@ -24,24 +23,28 @@
         android:insetRight="0dp"
         android:insetBottom="0dp"
         app:cornerRadius="30dp"
-        app:iconTint="@color/white" />
+        app:iconTint="@color/black" />
 
     <ImageView
         android:id="@+id/imgLogo"
         android:src="@drawable/logo"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/tv_hellou"
-        android:layout_marginBottom="20dp" />
+        android:layout_below="@+id/btn_back"
+        android:layout_marginBottom="10dp" />
 
     <TextView
         android:id="@+id/tv_hellou"
         android:layout_centerInParent="true"
+        android:layout_below="@+id/imgLogo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:textSize="30px"
+        android:fontFamily="@font/baruta_font"
+        android:layout_marginTop="20dp"
+        android:textSize="30sp"
         android:textColor="@color/white"
         android:text="hellou" /> <!--ovo triba prominit stringove-->
 
@@ -49,6 +52,9 @@
         android:id="@+id/tv_hellouUser"
         android:layout_below="@+id/tv_hellou"
         android:layout_centerInParent="true"
+        android:fontFamily="@font/baruta_font"
+        android:textColor="@color/black"
+        android:textSize="30sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"/>
@@ -63,8 +69,9 @@
         android:insetTop="0dp"
         android:insetRight="0dp"
         android:insetBottom="0dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:text="@string/btn_kreiraj"
+        android:fontFamily="@font/baruta_font"
         android:textColor="@color/white"
         android:backgroundTint="@color/black"
         app:cornerRadius="500dp"
@@ -76,6 +83,7 @@
         android:layout_height="80dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/btn_shape"
+        android:fontFamily="@font/baruta_font"
         android:text="@string/btn_prijavi_u_postojecu"
         android:textColor="@color/black"
         app:backgroundTint="@color/white" />
