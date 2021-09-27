@@ -74,8 +74,7 @@
         android:fontFamily="@font/baruta_font"
         android:textColor="@color/white"
         android:backgroundTint="@color/black"
-        app:cornerRadius="500dp"
-        />
+        app:cornerRadius="500dp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_prijavi_u_postojecu"

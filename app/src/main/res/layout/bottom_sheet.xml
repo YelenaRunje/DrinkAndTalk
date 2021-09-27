@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    android:id="@+id/bottomSheet"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="280dp"
     android:background="@drawable/btn_shape"
-    android:id="@+id/bottomSheet"
     app:behavior_hideable="true"
     app:behavior_peekHeight="150dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
@@ -24,17 +25,18 @@
             android:id="@+id/fab"
             android:layout_width="42dp"
             android:layout_height="42dp"
-
+            app:fabCustomSize="42dp"
             app:backgroundTint="@color/black"
-            app:backgroundTintMode="add"
-            android:foregroundGravity="center"
+            app:tint="@color/white"
+            android:src="@drawable/baseline_keyboard_arrow_up_white_20"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="0dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="2dp"/>
-
+            android:layout_marginTop="2dp"
+            android:focusable="true"
+            android:clickable="true"
+            app:elevation="3dp"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -58,23 +60,27 @@
             android:id="@+id/tv_prijavljeni"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/prijavljena_ekipa"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="4dp"
+            android:fontFamily="@font/baruta"
             android:backgroundTint="@color/white"
-            android:paddingLeft="15dp"
-
+            android:paddingLeft="30dp"
+            android:textSize="25sp"
             android:textColor="@color/color_primary" />
 
         <ListView
+            android:layout_marginTop="10dp"
             android:layout_below="@+id/tv_prijavljeni"
             android:id="@+id/listView"
+            android:paddingLeft="30dp"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:footerDividersEnabled="true"
-
-            android:dividerHeight="1dp"/>
+            android:dividerHeight="1dp"
+            android:nestedScrollingEnabled="false"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_kreni"

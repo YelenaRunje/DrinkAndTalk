@@ -18,8 +18,27 @@
 
     <string name="prijavljena_ekipa">PRIJAVLJENA EKIPA</string>
     <string name="vrijeme_igre">VRIJEME IGRE</string>
-    <string name="spusti">spusti i ne diraj mobitel za</string>
+    <string name="spusti">spusti i ne diraj \nmobitel za</string>
     <string name="kreni">kreni s igrom</string>
+    <string name="bravo">bravo!</string>
+
+    <string name="bravo2">vi ste prava ekipa \nkoja može zaboraviti \ntehnologiju na tren.
+    </string>
+    <string name="nova">NOVA IGRA?</string>
+    <string name="loser">luuuzeer je...</string>
+
+    <string name="loser2">ne sluša ekipu</string>
+    <string name="loser3">i plaća ovu rundu</string>
+
+
+
+    <string name="game1">Ukoliko podigneš mobitel u</string>
+    <string name="game2">sljedećih</string>
+    <string name="game3">ostalim</string>
+    <string name="game4">sudionicima igre doći će</string>
+    <string name="game5">notifikacija da si izgubio.</string>
+    <string name="game6">Budi fer i plati piće ako izgubiš!</string>
+    <string name="sekundi">sekundi</string>
 
 
 </resources>

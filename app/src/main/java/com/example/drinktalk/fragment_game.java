@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -51,6 +52,9 @@ public class fragment_game extends Fragment {
     private Button kreni;
     private ImageView qrCode;
     private String server_ip = "tempServer";
+    private ListView listView;//*******
+    private ArrayAdapter<String> arrayAdapter;//********
+    private ArrayList<String> arrayList;//***********
 
     private ServerSocket serverSocket;
     private Socket tempClientSocket;
@@ -77,6 +81,17 @@ public class fragment_game extends Fragment {
 
         spinner = view.findViewById(R.id.spinner);
         qrCode = view.findViewById(R.id.qrCode);
+        listView= view.findViewById(R.id.listView);
+        arrayList =new ArrayList<String>();
+        arrayAdapter=new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,arrayList);
+        listView.setAdapter(arrayAdapter);
+        listView.setDivider(getActivity().getResources().getDrawable(R.drawable.footer_divider));
+        arrayList.add("khfkjsdfhskdjf");
+        arrayList.add("khfkjsdskdjf");
+        arrayList.add("fffkjsdfhskdjf");
+        arrayList.add("kh43sdfhskdjf");
+        arrayList.add("aaaasdfhskdjf");
+        arrayAdapter.notifyDataSetChanged();
 
         String username = getArguments().getString("usernameBack");
         back = view.findViewById(R.id.btn_back1);
@@ -87,6 +102,10 @@ public class fragment_game extends Fragment {
                 /*Intent intent = new Intent(getContext(), ScanScreen.class);
                 intent.putExtra("username", username);
                 startActivity(intent);*/
+                TextView text = (TextView) view.findViewById(R.id.tv_gameTime);
+                text.setTextColor(Color.parseColor("#CC8A06"));
+
+
                 //TODO
             }
         });

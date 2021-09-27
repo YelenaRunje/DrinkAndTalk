@@ -1,14 +1,18 @@
 package com.example.drinktalk;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.app.KeyguardManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
-import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -18,23 +22,32 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Countdown extends AppCompatActivity {
+
     private ProgressBar progressBar;
+    private String time;
+    private TextView tvTime;
     private static TextView tvTimer;
     private static CountDownTimer countDownTimer = null;
-    private static final long pocetak = 10 * 1000;
-    private static final long interval = 1 * 1000;
-    private static final String JOIN_GAME_STR = "JOIN_GAME:";
-    private static final String I_LOST_STR = "I_LOST:";
-    private static final String GAME_OVER_STR = "GAME_OVER:";
-    private static final String GAME_WON_STR = "GAME_WON:";
+    private static final long pocetak = 10000;
+    private static final long interval = 1000;
+    private static final String JOIN_GAME_STR = "JOIN_GAME";
+    private static final String LEAVE_GAME_STR = "LEAVE_GAME";
+    private static final String I_LOST_STR = "I_LOST";
+    private static final String GAME_START_STR = "GAME_START";
+    private static final String GAME_OVER_STR = "GAME_OVER";
+    private static final String GAME_WON_STR = "GAME_WON";
 
     public static final int SERVERPORT = 3003;
     private ClientThread clientThread;
     private Thread thread;
     private String server_ip;
     private String username;
+    private FragmentTransaction ft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,34 +56,45 @@ public class Countdown extends AppCompatActivity {
 
         server_ip = getIntent().getStringExtra("server");
         username = getIntent().getStringExtra("username");
+        ft = getSupportFragmentManager().beginTransaction();
 
-        String time = getIntent().getStringExtra("time");
+        time = getIntent().getStringExtra("time");
 
         Log.v("Tag", "Server:"+server_ip+"Time:"+ time);
 
-        Log.v("ivana", "Connecting to Server...");
+        Log.v("ivana", "Connecting...");
         clientThread = new ClientThread();
         thread = new Thread(clientThread);
         thread.start();
-        Log.v("ivana", "Connected to Server...");
+        Log.v("ivana", "Connected...");
 
-        clientThread.sendMessage(JOIN_GAME_STR+username);
+        new CountDownTimer(1000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                // Do nothing
+            }
+
+            public void onFinish() {
+                clientThread.sendMessage("Code:"+JOIN_GAME_STR+" Player:"+username);
+            }
+        }.start();
+
+        registerReceiver(new PhoneUnlockedReceiver(), new IntentFilter("android.intent.action.USER_PRESENT"));
 
         progressBar = findViewById(R.id.progressBarCircle);
         tvTimer = findViewById(R.id.tv_timer);
+        tvTime = findViewById(R.id.tv_showTime);
+
+        List<String> temp = new ArrayList<String>(Arrays.asList(time.split(" ")));
+        tvTime.setText(temp.get(0)+" sat "+temp.get(2)+" min");
+
         countDownTimer = new MyCountDownTimer(pocetak, interval);
         if(tvTimer!=null){
             tvTimer.setText(String.valueOf(pocetak / 1000));
         }
 
-        // trigger eventova i kad se dogode clientThread.sendmsg(I_LOST_STR+username)
-
-        //On game starrt
-        //countDownTimer.start();
     }
 
     public class MyCountDownTimer extends CountDownTimer {
-
         public MyCountDownTimer(long startTime, long interval) {
             super(startTime, interval);
         }
@@ -78,17 +102,21 @@ public class Countdown extends AppCompatActivity {
         @Override
         public void onFinish() {
             if(tvTimer!=null){
-
-                tvTimer.setVisibility(View.GONE);
-                progressBar.setVisibility(View.GONE);
+                Bundle bundle = new Bundle();
+                bundle.putString("time", tvTime.getText().toString());
+                CountdownFragment cdown = new CountdownFragment();
+                cdown.setArguments(bundle);
+                ft.replace(R.id.placeholder, cdown);
+                ft.addToBackStack(null);
+                ft.commit();
             }
         }
 
         @Override
         public void onTick(long millisUntilFinished) {
             if(tvTimer!=null){
-                tvTimer.setText("" + millisUntilFinished / 1000);
-                progressBar.setProgress((int)(millisUntilFinished/1000));
+                tvTimer.setText("" + millisUntilFinished / interval);
+                progressBar.setProgress((int)(millisUntilFinished/interval));
             }
         }
     }
@@ -115,8 +143,15 @@ public class Countdown extends AppCompatActivity {
                         Log.v("ivana",message);
                         break;
                     }
-                    // isto provejrit sta je server posla, game over, game won, itd
+
                     Log.v("ivana","Server: " + message);
+
+                    String code = message.substring(message.indexOf("Code:") + 5);
+                    code = code.substring(0, code.indexOf(' '));
+                    String player = message.substring(message.indexOf("Player:") + 7);
+
+                    handleServerMessage(code,player);
+
                 }
 
             } catch (UnknownHostException e1) {
@@ -133,9 +168,7 @@ public class Countdown extends AppCompatActivity {
                 public void run() {
                     try {
                         if (null != socket) {
-                            PrintWriter out = new PrintWriter(new BufferedWriter(
-                                    new OutputStreamWriter(socket.getOutputStream())),
-                                    true);
+                            PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
                             out.println(message);
                         }
                     } catch (Exception e) {
@@ -145,14 +178,49 @@ public class Countdown extends AppCompatActivity {
             }).start();
         }
 
+        void handleServerMessage(String code, String player) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            switch (code) {
+                case GAME_WON_STR:
+                    ft.replace(R.id.placeholder, new SuccessFragment());
+                    ft.commit();
+                    break;
+                case GAME_OVER_STR:
+                    Bundle bundle = new Bundle();
+                    bundle.putString("loser", player);
+                    LoserFragment loser = new LoserFragment();
+                    loser.setArguments(bundle);
+                    ft.replace(R.id.placeholder, loser);
+                    ft.addToBackStack(null);
+                    ft.commit();
+                    break;
+                case GAME_START_STR:
+                    countDownTimer.start();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         if (null != clientThread) {
-            clientThread.sendMessage("Disconnect");
+            clientThread.sendMessage("Code:"+LEAVE_GAME_STR+" Player:"+username);
             clientThread = null;
+        }
+    }
+
+    public class PhoneUnlockedReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            KeyguardManager keyguardManager = (KeyguardManager)context.getSystemService(Context.KEYGUARD_SERVICE);
+            if (keyguardManager.isKeyguardSecure()) {
+                clientThread.sendMessage("Code:"+I_LOST_STR+" Player:"+username); // NA POMAK MOB KOPIRAT OVO
+            }
         }
     }
 }

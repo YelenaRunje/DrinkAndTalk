@@ -1,6 +1,11 @@
 package com.example.drinktalk;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -16,7 +21,9 @@ public class fragment_login extends Fragment {
     private Button btnLogin;
     private ImageView imgLogo;
     private EditText unos;
-
+    public static final int MY_PERMISSIONS_REQUEST_CAMERA = 100;
+    public static final String ALLOW_KEY = "ALLOWED";
+    public static final String CAMERA_PREF = "camera_pref";
 
     public fragment_login() {
         // Required
@@ -33,6 +40,7 @@ public class fragment_login extends Fragment {
         if(getArguments()!=null){
             unos.setText(getArguments().getString("usernameBack"));
         }
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

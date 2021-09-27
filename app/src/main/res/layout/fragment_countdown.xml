@@ -1,67 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
     android:background="@color/color_primary">
-
-    <TextView
-        android:id="@+id/tv_spusti"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/spusti"
-        android:layout_above="@id/progressBarCircle"
-        android:fontFamily="@font/baruta"
-        android:textColor="@color/black"
-        android:textAllCaps="true"
-        android:textAlignment="center"
-        android:layout_marginBottom="15dp"
-        android:minLines="2"
-        android:layout_centerHorizontal="true"/>
-
-    <ProgressBar
-        android:id="@+id/progressBarCircle"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="210dp"
-        android:layout_height="210dp"
-        android:layout_centerInParent="true"
-        android:background="@drawable/circle_black"
-        android:indeterminate="false"
-        android:max="10"
-        android:progress="100"
-        android:progressDrawable="@drawable/circle_white"
-        android:rotation="-90" />
-
-    <TextView
-        android:id="@+id/tv_timer"
-        android:fontFamily="@font/baruta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="10"
-        android:textColor="@color/black"
-        android:textSize="65sp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/sekundi"
-        android:layout_below="@id/progressBarCircle"
-        android:fontFamily="@font/baruta"
-        android:textColor="@color/black"
-        android:textAllCaps="true"
-        android:layout_marginTop="15dp"
-        android:textAlignment="center"
-        android:minLines="2"
-        android:layout_centerHorizontal="true"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="249dp"
         android:layout_height="146dp"
-        android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         android:layout_marginBottom="16dp">
 
@@ -72,34 +20,35 @@
             android:fontFamily="@font/gotham_rounded"
             android:text="@string/game1"
             android:textColor="@color/black"
-            app:layout_constraintBottom_toTopOf="@+id/textView"
+            app:layout_constraintBottom_toTopOf="@+id/tv_Time"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.466"
+            app:layout_constraintHorizontal_bias="0.55"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginRight="5dp"
             android:fontFamily="@font/gotham_rounded"
             android:text="@string/game2"
             android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/textView4"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_Time"
             tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
             android:fontFamily="@font/gotham_rounded"
             android:text="@string/game3"
+            android:layout_marginLeft="5dp"
             android:textColor="@color/black"
-            app:layout_constraintBottom_toTopOf="@+id/textView4"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintStart_toEndOf="@+id/tv_Time"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="32dp" />
 
         <TextView
             android:id="@+id/textView4"
@@ -114,7 +63,7 @@
             app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.396" />
+            app:layout_constraintVertical_bias="0.388" />
 
         <TextView
             android:id="@+id/textView2"
@@ -144,25 +93,16 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/tv_showTime"
+            android:id="@+id/tv_Time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/gotham_rounded"
             android:text="1 sat i 30 min"
             android:textColor="@color/black"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView8"
-            app:layout_constraintHorizontal_bias="0.892"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.25" />
+            app:layout_constraintBottom_toTopOf="@+id/textView4"
+            tools:layout_editor_absoluteX="95dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <FrameLayout
-        android:id="@+id/placeholder"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></FrameLayout>
 
 </RelativeLayout>

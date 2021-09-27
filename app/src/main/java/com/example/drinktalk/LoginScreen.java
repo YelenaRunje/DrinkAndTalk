@@ -3,7 +3,6 @@ package com.example.drinktalk;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -16,9 +15,8 @@ public class LoginScreen extends AppCompatActivity{
         setContentView(R.layout.activity_login_screen);
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.placeholder, new fragment_login());
+        ft.replace(R.id.placeholder, new LoginFragment());
         ft.commit();
-
     }
 
     @Override
