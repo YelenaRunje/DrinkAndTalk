@@ -2,6 +2,7 @@ package com.example.drinktalk;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
@@ -45,14 +46,18 @@ public class ParticipantsFragment extends Fragment {
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bundle.putString("usernameBack", getArguments().getString("username"));
+               /* bundle.putString("usernameBack", getArguments().getString("username"));
                 bundle.putString("flag", "0");
                 bundle.putSerializable("list", participants);
-                GameFragment game = new GameFragment();
+                //GameFragment game = new GameFragment();
                 game.setArguments(bundle);
                 ft.replace(R.id.placeholder, game);
                 ft.addToBackStack(null);
-                ft.commit();
+                ft.commit();*/
+
+                //FragmentManager fm = getActivity().getSupportFragmentManager();
+                //fm.popBackStack();
+                getFragmentManager().popBackStackImmediate();
             }
         });
 

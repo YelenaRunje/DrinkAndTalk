@@ -14,6 +14,7 @@
         android:layout_marginBottom="16dp">
 
         <TextView
+            android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -28,27 +29,29 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
+            android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
             android:fontFamily="@font/gotham_rounded"
             android:text="@string/game2"
             android:textColor="@color/black"
+            android:layout_marginLeft="16dp"
             app:layout_constraintBottom_toTopOf="@+id/textView4"
-            app:layout_constraintEnd_toStartOf="@+id/tv_Time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
             tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
             android:fontFamily="@font/gotham_rounded"
             android:text="@string/game3"
-            android:layout_marginLeft="5dp"
             android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/textView4"
             app:layout_constraintStart_toEndOf="@+id/tv_Time"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="32dp" />
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/textView4"
@@ -96,12 +99,13 @@
             android:id="@+id/tv_Time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
             android:fontFamily="@font/gotham_rounded"
             android:text="1 sat i 30 min"
             android:textColor="@color/black"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/textView4"
-            tools:layout_editor_absoluteX="95dp" />
+            app:layout_constraintStart_toStartOf="@+id/textView6" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
