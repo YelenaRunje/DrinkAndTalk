@@ -60,13 +60,13 @@ public class Countdown extends AppCompatActivity {
 
         time = getIntent().getStringExtra("time");
 
-        Log.v("Tag", "Server:"+server_ip+"Time:"+ time);
+        Log.v("msg", "Server:"+server_ip+"Time:"+ time);
 
-        Log.v("ivana", "Connecting...");
+        Log.v("msg", "Connecting...");
         clientThread = new ClientThread();
         thread = new Thread(clientThread);
         thread.start();
-        Log.v("ivana", "Connected...");
+        Log.v("msg", "Connected...");
 
         new CountDownTimer(1000, 1000) {
             public void onTick(long millisUntilFinished) {
@@ -140,11 +140,8 @@ public class Countdown extends AppCompatActivity {
                     if (null == message || "Disconnect".contentEquals(message)) {
                         Thread.interrupted();
                         message = "Server Disconnected.";
-                        Log.v("ivana",message);
                         break;
                     }
-
-                    Log.v("ivana","Server: " + message);
 
                     String code = message.substring(message.indexOf("Code:") + 5);
                     code = code.substring(0, code.indexOf(' '));
@@ -213,7 +210,6 @@ public class Countdown extends AppCompatActivity {
     }
 
     public class PhoneUnlockedReceiver extends BroadcastReceiver {
-
         @Override
         public void onReceive(Context context, Intent intent) {
 

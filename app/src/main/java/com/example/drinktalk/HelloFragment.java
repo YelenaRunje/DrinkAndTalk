@@ -12,14 +12,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import com.google.android.material.button.MaterialButton;
 
-public class fragment_hello extends Fragment implements View.OnClickListener {
+public class HelloFragment extends Fragment implements View.OnClickListener {
 
     private TextView username;
     private Button back, scan;
     private MaterialButton kreiraj;
 
 
-    public fragment_hello() {
+    public HelloFragment() {
     }
 
 
@@ -50,7 +50,7 @@ public class fragment_hello extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
 
             case R.id.btn_back:
-                fragment_login login = new fragment_login();
+                LoginFragment login = new LoginFragment();
                 login.setArguments(bundle);
                 trans.replace(R.id.placeholder, login);
                 trans.addToBackStack(null);
@@ -58,7 +58,7 @@ public class fragment_hello extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.btn_prijavi_se:
-                fragment_game game = new fragment_game();
+                GameFragment game = new GameFragment();
                 game.setArguments(bundle);
                 trans.replace(R.id.placeholder, game);
                 trans.addToBackStack(null);
