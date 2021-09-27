@@ -101,10 +101,9 @@ public class GameFragment extends Fragment{
         }
 
         listView = view.findViewById(R.id.listView);
-        clientNameList.add(server_username);
+
         adapter = new ArrayAdapter<String>(view.getContext(), R.layout.list_item, clientNameList);
         listView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
         tv_gameTime = view.findViewById(R.id.tv_gameTime);
         expand = view.findViewById(R.id.fab);
         back = view.findViewById(R.id.btn_back1);
@@ -151,18 +150,25 @@ public class GameFragment extends Fragment{
                 }.start();
             }
         });
-        if(!(getArguments().getString("flag")==null)){
-
-        }else{
-            this.serverThread = new Thread(new ServerThread());
-            this.serverThread.start();
-        }
 
         Context context = getContext();
-        WifiManager wm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-        server_ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
-        Log.v("msg","Server Started at IP: "+ server_ip);
-        Toast.makeText(getContext(),"Startan server sa ip adresom"+server_ip, Toast.LENGTH_SHORT).show();
+
+
+        if (this.serverThread == null) {
+
+            this.serverThread = new Thread(new ServerThread());
+            this.serverThread.start();
+            WifiManager wm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+            server_ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
+            Log.v("msg","Server Started at IP: "+ server_ip);
+            Toast.makeText(getContext(),"Startan server sa ip adresom"+server_ip, Toast.LENGTH_SHORT).show();
+        }
+        Log.v("msg", "nam:"+server_username);
+
+        if (!clientNameList.contains(server_username)) {
+            clientNameList.add(server_username);
+            adapter.notifyDataSetChanged();
+        }
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,13 +217,15 @@ public class GameFragment extends Fragment{
                 String selectedItemText = (String) parent.getItemAtPosition(position);
                 String QRcontent;
 
-                WindowManager manager = (WindowManager)view.getContext().getSystemService(Context.WINDOW_SERVICE);
+                /*WindowManager manager = (WindowManager)view.getContext().getSystemService(Context.WINDOW_SERVICE);
                 Display display = manager.getDefaultDisplay();
 
                 Point point = new Point();
-                display.getSize(point);
-                int width = point.x;
-                int height = point.y;
+                display.getSize(point);*/
+                int width = 720;
+                int height = 1400;
+
+                //Log.v("msg", "w:"+width+"h"+height);
 
                 int dimen = width < height ? width : height;
                 dimen = dimen * 3 / 4;
@@ -251,6 +259,7 @@ public class GameFragment extends Fragment{
         @Override
         public void onFinish() {
             sendMessage("Code:"+GAME_WON_STR+" Player: ");
+            countDownTimer.cancel();
             serverThread.interrupt();
         }
 
